@@ -1,0 +1,97 @@
+<div class="container py-4">
+  
+  @if (products().length === 0) {
+    <div class="row">
+      <div class="col text-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Caricamento...</span>
+        </div>
+        <p class="mt-2 text-muted">Caricamento prodotti in corso...</p>
+      </div>
+    </div>
+  } @else {
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-3">
+      
+      @for (p of filteredProducts(); track p.id) {
+        <div class="col">
+          <!-- Sulla card aggiungi il click -->
+        <div class="card h-100 shadow-sm" style="cursor: pointer;" (click)="apriDettaglio(p.id)">
+            
+            <img [src]="p.imageUrl" [alt]="p.title" class="card-img-top" style="height: 180px; object-fit: contain; padding: 1rem;">
+            
+            @if (p.isNew) {
+              <span class="badge bg-success position-absolute top-0 start-0 m-2">Nuovo</span>
+            }
+
+            <div class="card-body d-flex flex-column">
+              <span class="badge bg-secondary mb-2 align-self-start">{{ p.brand }}</span>
+              <h6 class="card-title fw-bold">{{ p.title }}</h6>
+              <p class="card-text text-muted small flex-grow-1">{{ p.description }}</p>
+
+              <div class="mt-auto">
+                @if (p.oldPrice) {
+                  <span class="text-decoration-line-through text-muted small me-1">{{ p.oldPrice }} €</span>
+                }
+                <span class="fw-bold text-danger fs-5">{{ p.price }} €</span>
+              </div>
+            </div>
+
+            <div class="card-footer bg-transparent border-0 pb-3 px-3">
+              <button class="btn btn-primary w-100" (click)="$event.stopPropagation(); addToCart({ id: p.id, nome: p.title, prezzo: p.price })">
+                <i class="bi bi-cart-plus me-1"></i> Aggiungi al carrello
+              </button>
+            </div>
+
+          </div>
+        </div>
+      }
+
+    </div>
+  }
+
+</div>
+
+<!-- MODAL DETTAGLIO PRODOTTO -->
+@if (modalDettaglioAperto() && prodottoSelezionato(); as p) {
+  <div class="modal d-block" tabindex="-1" style="background: rgba(0,0,0,0.5);">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold">{{ p.title }}</h5>
+          <button type="button" class="btn-close" (click)="chiudiDettaglio()"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row g-4">
+            <div class="col-md-5 text-center">
+              <img [src]="p.imageUrl" [alt]="p.title" class="img-fluid rounded" style="max-height: 280px; object-fit: contain;">
+            </div>
+            <div class="col-md-7 d-flex flex-column gap-2">
+              <span class="badge bg-secondary align-self-start">{{ p.brand }}</span>
+              @if (p.isNew) {
+                <span class="badge bg-success align-self-start">Nuovo</span>
+              }
+              <p class="text-muted">{{ p.description }}</p>
+              <div class="mt-auto">
+                @if (p.oldPrice) {
+                  <span class="text-decoration-line-through text-muted me-2">{{ p.oldPrice }} €</span>
+                }
+                <span class="fw-bold text-danger fs-4">{{ p.price }} €</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" (click)="chiudiDettaglio()">Chiudi</button>
+          <button class="btn btn-primary" (click)="addToCart({ id: p.id, nome: p.title, prezzo: p.price }); chiudiDettaglio()">
+            <i class="bi bi-cart-plus me-1"></i> Aggiungi al carrello
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+}
+

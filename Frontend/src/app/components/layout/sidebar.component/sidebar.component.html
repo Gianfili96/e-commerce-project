@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="title">
+    <h2>Carrello</h2>
+  </div>
+
+  <div class="container-carrello">
+
+    @if (carrello().length === 0) {
+      <p>Il tuo carrello è vuoto</p>
+    } @else {
+
+      <table>
+        <thead>
+          <tr>
+            <th>Prodotto</th>
+            <th>Prezzo</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of carrello(); track item.id) {
+            <tr>
+              <td class="name">
+                <span title="Rimuovi {{item.nome}}" class="bi bi-trash" (click)="removeSingleItem(item)"></span>
+                {{ item.nome }} 
+                @if (item.quantita > 1) { - x{{ item.quantita }} }
+              </td>
+              <td class="price">{{ roundDecimal(item.prezzo * item.quantita) }}€</td>
+            </tr>
+          }
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="total">Totale</td>
+            <td class="total-price">{{ roundDecimal(counter()) }}€</td>
+          </tr>
+      </table>
+     
+          <button (click)="clearCart()">SVUOTA CARRELLO</button>
+          <button class="checkOut" (click)="checkout()">VAI AL CHECKOUT!</button>
+    }
+
+  </div>
+
+</div>

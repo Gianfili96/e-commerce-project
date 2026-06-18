@@ -1,0 +1,81 @@
+{
+  "products": [
+    {
+      "title": "T-shirt blu",
+      "des": "100% cotone puro",
+      "oldPrice": 15,
+      "price": 12.9,
+      "brand": "Nike",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa8PKAw6rwgI6oarYy1vmu_g-X3iFTS3DmFtvPbMXOYQ&s",
+      "isNew": "true",
+      "category": "Abbigliamento",
+      "id": 1
+    },
+    {
+      "title": "T-shirt rossa",
+      "des": "100% cotone puro",
+      "oldPrice": 15,
+      "price": 12.9,
+      "brand": "Nike",
+      "image": "https://img.joomcdn.net/081aed9ec0fd89206877a59e2bfebe8e3385bfea_1024_1024.jpeg",
+      "isNew": "true",
+      "category": "Abbigliamento",
+      "id": 2
+    },
+    {
+      "title": "T-shirt nera",
+      "des": "90% cotone 10% poliestere",
+      "oldPrice": 15,
+      "price": 12.9,
+      "brand": "Adidas",
+      "image": "https://egress.storeden.net/jpg/64382ea8202628dc638b4aeb",
+      "isNew": "true",
+      "category": "Abbigliamento",
+      "id": 3
+    },
+    {
+      "title": "Iphone 17",
+      "des": "Apple iphone ultima generazione",
+      "oldPrice": 1099,
+      "price": 799,
+      "brand": "Apple",
+      "image": "https://vlmstore.it/wp-content/uploads/2025/09/iphone-17-256gb-nero.jpg",
+      "isNew": "true",
+      "category": "Smartphone",
+      "id": 4
+    },
+    {
+      "title": "Samsung s20",
+      "des": "Smartphone samsung s20 top gamma",
+      "oldPrice": 899,
+      "price": 699,
+      "brand": "Samsung",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw0iXqS02gvmkTOUVV1fD1JptUfqTDak9e2g&s",
+      "isNew": "true",
+      "category": "Smartphone",
+      "id": 5
+    },
+    {
+      "title": "Test",
+      "des": "Test",
+      "oldPrice": 100,
+      "price": 50,
+      "brand": "Test",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa8PKAw6rwgI6oarYy1vmu_g-X3iFTS3DmFtvPbMXOYQ&s",
+      "isNew": "true",
+      "category": "Test",
+      "id": 6
+    },
+    {
+      "title": "Test2",
+      "des": "ciao",
+      "oldPrice": 20,
+      "price": 10,
+      "brand": "momo",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa8PKAw6rwgI6oarYy1vmu_g-X3iFTS3DmFtvPbMXOYQ&s",
+      "isNew": "true",
+      "category": "Abbigliamento",
+      "id": 7
+    }
+  ]
+}

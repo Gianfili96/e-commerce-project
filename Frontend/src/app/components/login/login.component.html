@@ -1,0 +1,57 @@
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+  <div class="card shadow" style="width: 420px;">
+
+    <div class="card-header text-center fw-bold fs-5">
+      @if (isLoginMode()) { Accedi } @else { Registrati }
+    </div>
+
+    <div class="card-body p-4">
+
+      @if (errorMessage()) {
+        <div class="alert" [class.alert-danger]="!errorMessage().includes('completata')" 
+             [class.alert-success]="errorMessage().includes('completata')">
+          {{ errorMessage() }}
+        </div>
+      }
+
+      @if (isLoginMode()) {
+        <!-- LOGIN -->
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <input type="text" class="form-control" [(ngModel)]="loginData.username" placeholder="Inserisci username">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" [(ngModel)]="loginData.password" placeholder="Inserisci password">
+        </div>
+        <button class="btn btn-primary w-100" (click)="login()">Accedi</button>
+
+      } @else {
+        <!-- REGISTRAZIONE -->
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <input type="text" class="form-control" [(ngModel)]="signupData.username" placeholder="Scegli un username">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" [(ngModel)]="signupData.email" placeholder="Inserisci email">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" [(ngModel)]="signupData.password" placeholder="Scegli una password">
+        </div>
+        <button class="btn btn-success w-100" (click)="signup()">Registrati</button>
+      }
+
+    </div>
+
+    <div class="card-footer text-center">
+      @if (isLoginMode()) {
+        <small>Non hai un account? <a href="#" (click)="$event.preventDefault(); toggleMode()">Registrati</a></small>
+      } @else {
+        <small>Hai già un account? <a href="#" (click)="$event.preventDefault(); toggleMode()">Accedi</a></small>
+      }
+    </div>
+
+  </div>
+</div>

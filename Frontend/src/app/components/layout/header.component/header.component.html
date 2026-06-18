@@ -1,0 +1,20 @@
+<header>
+    <div class="logo">E-commerce Lipari</div>
+    <nav>
+        <ul>
+            <li><a routerLink="/shop">Shop</a></li>
+            <li><a routerLink="/ordini">I miei ordini</a></li>
+            <li><a routerLink="/profilo">Profilo</a></li>
+        </ul>
+    </nav>
+    
+    <form *ngIf="isShopPage()" class="form-inline my-2 my-lg-0">
+  <span class="bi bi-search"></span>  
+  <input class="form-control mr-sm-2" 
+         type="search" 
+         placeholder="Cerca il prodotto" 
+         (input)="onSearch($event)">
+</form>
+
+    <button (click)="logout()">Log out</button>
+</header>

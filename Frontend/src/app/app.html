@@ -1,0 +1,63 @@
+<div class="container-fluid d-flex flex-column vh-100 p-0">
+
+   @if (!isAdminRoute()) {
+    <app-header class="flex-shrink-0"></app-header>
+  }
+
+  <main class="flex-grow-1 overflow-auto">
+    <router-outlet></router-outlet>
+  </main>
+
+  @if (!isAdminRoute()) {
+    <app-footer class="flex-shrink-0" style="height: 40px;"></app-footer>
+  }
+
+</div>
+
+@if (ordineSuccesso()) {
+  <div class="alert alert-success position-fixed top-0 end-0 m-3 shadow" 
+       style="z-index: 10000;" role="alert">
+    Ordine effettuato con successo!
+  </div>
+}
+
+@if (modalAperto()) {
+  <div class="modal d-block" tabindex="-1" style="background: rgba(0,0,0,0.5);">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold">Riepilogo Ordine</h5>
+          <button type="button" class="btn-close" (click)="chiudiCheckout()"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group list-group-flush">
+            @for (item of carrello(); track item.id) {
+              <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                <span>
+                  {{ item.nome }}
+                  @if (item.quantita > 1) {
+                    <span class="badge bg-secondary ms-2">x{{ item.quantita }}</span>
+                  }
+                </span>
+                <span class="fw-semibold">{{ roundDecimal(item.prezzo * item.quantita) }}€</span>
+              </li>
+            }
+          </ul>
+          <div class="d-flex justify-content-between align-items-center border-top pt-3 mt-2">
+            <span class="fs-5 fw-bold">Totale</span>
+            <span class="fs-5 fw-bold text-success">{{ roundDecimal(counter()) }}€</span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" (click)="chiudiCheckout()">Annulla</button>
+          <button 
+            class="btn btn-success" 
+            (click)="confermaOrdine()"
+            [disabled]="carrello().length === 0">
+            Conferma Ordine
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
